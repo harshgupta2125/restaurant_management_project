@@ -48,3 +48,13 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} x {self.menu_item.name} for order #{self.order.id}"
         
+
+
+class ContactSubmission(models.Model):
+    name= models.CharField(max_length=100)
+    email= models.EmailField()
+    message= models.TextField()
+    submitted_at= models.DateTime(auto_now_add=True)
+
+    def __str__(self):
+        return f "Contact form submission from {self.name} on {self.submitted_at.strftime('%Y-%m-%d')}"
