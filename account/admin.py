@@ -18,3 +18,4 @@ class OrderAdmin(admin.ModelAdmin):
     list_display= ('id', 'customer', 'status', 'total_amount', 'created_at')
     readonly_fields= ('total_amount', 'created_at')
     inline= [OrderItemsInline]
+
