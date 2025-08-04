@@ -58,3 +58,18 @@ class ContactSubmission(models.Model):
 
     def __str__(self):
         return f "Contact form submission from {self.name} on {self.submitted_at.strftime('%Y-%m-%d')}"
+
+
+class RestrauntSettings(models.Model):
+    name= models.CharField(max_length=255, default= 'My Awesome Restraunt')
+
+    def save(self, *args, **kwargs):
+        if RestrauntSettings.objects.exists() and not self.pk:
+            existing_instance= RestrauntSettings.objects.first()
+            self.pk= existing_instance.pk
+            super().save(*args, **kwargs)
+        else:
+            super().save(*args, **kwargs)
+    def __str__(self):
+        return self.name
+        
