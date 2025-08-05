@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Restaurant Menu</title>
+    </head>
+
+
+    <body>
+        <div> <h1> Our Menu</h1>
+        <div> <p> Loading menu.....</p>
+        </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', ()=>{
+            const menuContainer= document.getElementById('menu-container');
+            async function fetchMenu(){
+            try{
+            const response= await fetch('/api/menu/');
+            if(!response.ok){
+                throw new Error('HTTP error! status: ${response.status}');
+            }
+            const menuItems= await response.json();
+            menuContainer.innerHTML= '';
+
+            if(menuItems.length===0){
+                menuContainer.innerHtml= '<p>No menu items are available at the moment.</p>';
+                return;
+            }
+            menuItems.forEach(item =>{
+            const menuItemHtml== '<div><h2>${item.name}</h2><p>${item.description}</p> <div> <span> $${parseFloat(item.price).toFixed(2)}</span> </div></div>';
+            });
+            }catch (error){
+                console.error('Failed to fetch Menu:',error);
+                menuContainer.innerHTML= '<p>Failed to load menu. Please try again later.</p>';
+            }
+            }
+            fetchMenu();
+            });
+            </script>
+    </body>
+</html>
