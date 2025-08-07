@@ -106,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+RESTAURANT_NAME= 'Django Eats'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
